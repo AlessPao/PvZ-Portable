@@ -558,7 +558,7 @@ jobs:
 
         cmake -B $BUILD_DIR \
           -DCMAKE_TOOLCHAIN_FILE=$VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake \
-          -DVCPKG_TARGET_TRIPLET=arm-android \
+          -DVCPKG_TARGET_TRIPLET=arm-neon-android \
           -DVCPKG_CMAKE_SYSTEM_VERSION=$ANDROID_API \
           -DVCPKG_CHAINLOAD_TOOLCHAIN_FILE=$ANDROID_NDK/build/cmake/android.toolchain.cmake \
           -DANDROID_ABI=$ABI \
@@ -577,7 +577,7 @@ jobs:
         cp -L $SDL2_PREFIX/lib/libSDL2*.so $JNILIBS/
 
         # Copy any .so dependencies from vcpkg (manifest mode installs into build dir)
-        VCPKG_LIB=$BUILD_DIR/vcpkg_installed/arm-android/lib
+        VCPKG_LIB=$BUILD_DIR/vcpkg_installed/arm-neon-android/lib
         for so in "$VCPKG_LIB"/*.so; do
           [ -f "$so" ] && cp -L "$so" $JNILIBS/
         done
